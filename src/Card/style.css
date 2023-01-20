@@ -1,0 +1,89 @@
+
+
+.card{
+    background: url(/assets/bg-main-mobile.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    padding: 1.5rem;
+    position: relative;
+}
+.back{
+    margin-left: 1rem;
+    position: relative;
+}
+.card img{
+    width: 100%;
+}
+
+.atmcard{
+    position: absolute;
+    top: 50%;
+    left: 5%;
+    width: 80%;
+}
+.content{
+    position: absolute;
+    z-index: 5;
+}
+@media screen and (min-width : 728px ) {
+    .card{
+        background: url(/assets/bg-main-desktop.png);
+        background-size: cover;
+        height: 30vh;
+        padding: 2rem;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: cover;
+    }
+    .back{
+        padding-left: 0rem;
+        margin-left: 0rem;
+        margin-left: 0;
+    }
+    .card img{
+        width: auto;
+    }
+    .atmcard{
+        top: auto;
+        position: relative;
+        width: auto;
+        top:  -25%;
+        left: 0%;
+        display: flex;
+        justify-content: center;
+    }
+    .back{
+        display: flex;
+        justify-content: right;
+    }
+}
+@media screen and (min-width : 998px ) {
+    .card{
+        background: url(/assets/bg-main-desktop.png);
+        height: 100vh;
+        padding: 1rem;
+        width: auto;
+        display: flex;
+        flex-direction: column-reverse;
+        justify-content: center;
+    }
+    .back{
+        padding-left: 0rem;
+        margin-left: 0rem;
+        display: block;
+        position: relative;
+        left: 50%;
+        margin-top: 1rem;
+    }
+    .card img{
+        width: auto;
+    }
+    .atmcard{
+        top: auto;
+        position: relative;
+        width: auto;
+        left: 30%;
+        margin-bottom: 1rem;
+    }
+}
