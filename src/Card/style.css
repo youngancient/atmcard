@@ -14,16 +14,56 @@
 .card img{
     width: 100%;
 }
-
+.card .logo img{
+    width: auto;
+}
+.content h2{
+    font-weight: 400;
+}
+.content h2, .content p{
+    color: #fff;
+}
 .atmcard{
     position: absolute;
-    top: 50%;
+    top:60%;
     left: 5%;
     width: 80%;
 }
+.back-p{
+    position: absolute;
+    top: 42%;
+    width: 88%;
+    text-align: right;
+}
+.back-p p{
+    letter-spacing: 1px;
+}
+.card .number{
+    display: flex;
+}
+.card .bottom{
+    display: flex;
+    justify-content: space-between;
+}
 .content{
     position: absolute;
+    left: 0;
+    top: 0;
     z-index: 5;
+    width: 100%;
+    padding: 0.5rem;
+}
+.number{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1.5rem;
+}
+.content .bottom{
+    margin-top: 1rem;
+}
+.number h2{
+    letter-spacing: 1px;
+    font-size: 1.4rem;
 }
 @media screen and (min-width : 728px ) {
     .card{
@@ -57,6 +97,28 @@
         display: flex;
         justify-content: right;
     }
+    .content{
+        padding: 1rem;
+        width: 50%;
+        left: 25%;
+        top: 1rem;
+    }
+    .number{
+        margin-top: 3rem;
+    }
+    .content .bottom{
+        margin-top: 2rem;
+    }
+    .number h2{
+        letter-spacing: 2px;
+        font-size: 1.6rem;
+    }
+    .back-p{
+        top: 44%;
+    }
+    .back-p p{
+        padding-right: 10%;
+    }
 }
 @media screen and (min-width : 998px ) {
     .card{
@@ -79,11 +141,36 @@
     .card img{
         width: auto;
     }
+    .number h2{
+        font-size: 1.8rem;
+    }
     .atmcard{
         top: auto;
         position: relative;
         width: auto;
         left: 30%;
         margin-bottom: 1rem;
+    }
+    .content{
+        padding: 2rem;
+        width: 100%;
+        left: auto;
+        top: 0;
+    }
+    .number{
+        margin-top: 3rem;
+    }
+    .number h2{
+        letter-spacing: 2px;
+    }
+    .content .bottom{
+        margin-top: 2rem;
+    }
+    .back-p{
+        top: 44%;
+        width: 90%;
+    }
+    .back-p p{
+        padding-right: 0;
     }
 }

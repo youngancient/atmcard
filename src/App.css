@@ -7,11 +7,24 @@
     margin: 0;
     box-sizing: border-box;
 }
+.cont{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30%;
+}
+@media screen and (min-width : 728px ) {
+    .cont{
+        margin-top: 15%;
+    }
+}
 @media screen and (min-width : 998px ) {
     .main{
         display: grid;
         grid-template-columns: 30% 70%;
         overflow-x: hidden;
     }
-
+    .cont{
+        margin-top: 0;
+    }
 }

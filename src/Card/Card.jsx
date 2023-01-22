@@ -2,18 +2,21 @@ import "./style.css";
 
 const Card = () => {
   return (
-    <div className="card bdr">
-      <div className="back bdr">
+    <div className="card">
+      <div className="back">
         <img src="/assets/bg-card-back.png" alt="back of card" className="" />
+        <div className="back-p">
+          <p>000</p>
+        </div>
       </div>
-      <div className="atmcard bdr">
+      <div className="atmcard">
         <img src="/assets/bg-card-front.png" alt="front of card" className="" />
         <div className="content">
           <div className="logo">
             <img src="/assets/card-logo.svg" alt="logo" className="" />
           </div>
           <div className="number">
-            <h2>0000</h2>
+            <h2 style={{marginLeft : '0px'}}>0000</h2>
             <h2>0000</h2>
             <h2>0000</h2>
             <h2>0000</h2>
