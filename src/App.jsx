@@ -5,7 +5,8 @@ import Success from './Success/Success'
 import Form from './Form/Form'
 
 function App() {
-  const [submitted, setsubmitted] = useState(false)
+  // set to false back ooo
+  const [submitted, setsubmitted] = useState(true)
 
   return (
     <div className="App">

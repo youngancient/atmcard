@@ -1,5 +1,14 @@
-
-
+input{
+    outline: 0;
+    height: 45px;
+    padding: 8px;
+    border-radius: 8px;
+    color: hsl(279, 6%, 55%);
+    border: 1px solid hsl(279, 6%, 55%);
+}
+input:focus{
+    border: 2px solid hsl(249, 99%, 64%)
+}
 .element{
     display: flex;
     flex-direction: column;
@@ -7,18 +16,53 @@
 .element-2{
     display: flex;
 }
+.one input{
+    width: 60px;
+}
+.one input:nth-of-type(2){
+    margin-left: 1rem;
+}
 .btn{
     width: 100%;
+    margin-top: 2rem;
+    padding-bottom: 2rem;
 }
-.btn button{
+.two{
+    margin-left: 1rem;
+}
+label{
+    font-weight: 500;
+    color: hsl(278, 68%, 11%);
+}
+button{
     width: 100%;
-    height: 40px;
+    height: 50px;
     border-radius: 4px;
     outline: 0;
     border: 0;
+    cursor: pointer;
+    border-radius: 8px;
+    background: hsl(278, 68%, 11%);
+    color: hsl(270, 3%, 87%);
+    font-size: 1rem;
+}
+.mt-1{
+    margin-top: 1.5rem;
+}
+.mt-min{
+    margin-top: 0.4rem;
+}
+.error{
+    margin-top: 0.4rem;
+    color: hsl(0, 100%, 66%)
 }
 @media screen and (min-width : 728px ) {
-
+    input{
+        font-size: 18px
+    }
+    .btn{
+        padding-bottom: 0;
+    }
 }
 @media screen and (min-width : 998px ) {
 

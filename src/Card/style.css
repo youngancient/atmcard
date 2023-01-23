@@ -37,6 +37,7 @@
 }
 .back-p p{
     letter-spacing: 1px;
+    color: #fff;
 }
 .card .number{
     display: flex;
@@ -123,6 +124,7 @@
 @media screen and (min-width : 998px ) {
     .card{
         background: url(/assets/bg-main-desktop.png);
+        background-repeat: no-repeat;
         height: 100vh;
         padding: 1rem;
         width: auto;
@@ -171,6 +173,6 @@
         width: 90%;
     }
     .back-p p{
-        padding-right: 0;
+        padding-right: 15%;
     }
 }
