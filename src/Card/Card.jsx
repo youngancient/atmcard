@@ -1,12 +1,16 @@
 import "./style.css";
 
-const Card = () => {
+const Card = ({cardDetails}) => {
   return (
     <div className="card">
       <div className="back">
         <img src="/assets/bg-card-back.png" alt="back of card" className="" />
         <div className="back-p">
-          <p>000</p>
+          {
+            cardDetails.cvc === "" 
+            ? <p>000</p>
+            : <p>{cardDetails.cvc}</p>
+          }
         </div>
       </div>
       <div className="atmcard">
@@ -22,6 +26,7 @@ const Card = () => {
             <h2>0000</h2>
           </div>
           <div className="bottom">
+          
             <p>JANE APPLESEED</p>
             <p>00/00</p>
           </div>
