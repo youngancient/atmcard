@@ -60,6 +60,9 @@ button:hover{
     color: hsl(0, 100%, 66%);
     font-size: 13px;
 }
+.red{
+    border: 2px solid hsl(0, 100%, 66%);
+}
 @media screen and (min-width : 728px ) {
     input{
         font-size: 18px

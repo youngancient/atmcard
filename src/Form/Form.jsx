@@ -2,14 +2,27 @@ import "./style.css";
 import { useState } from "react";
 
 const Form = ({cardDetails, setCardDetails}) => {
+
+  // state managing dynamically changing error messages
   const [error, setError] = useState({
     nameErr : '',
     cardNumberErr : '',
     monthErr : '',
     cvcErr : ''
-  })
+  });
+
+  // state managing validity
+  const [valid, setValid ] = useState({
+    nameValid : null,
+    cardValid : null,
+    monthValid : null,
+    yearValid : null,
+    cvcValid : null
+  });
+
+  // function checking the input field is blank
   const validateBlank = (stateVar, stateVal)=>{
-    if(stateVal.length === 0){
+    if(stateVal.length === 0){      
       if(stateVar == "year"){
         setError({ ...error, [`monthErr`]: "Can't be blank"});
       }else{
@@ -23,22 +36,36 @@ const Form = ({cardDetails, setCardDetails}) => {
       }
     }
   }
+
+  // function checking the input field length is the same as what was required
   const validateNum = (stateVar, stateVal, num)=>{
-    console.log(num)
-    if(stateVal.length !== num){
-      if(stateVar == "year"){
-        setError({ ...error, [`monthErr`]: `must be ${num} chars`});
+    if(stateVar == "name"){
+      if(stateVal.length > 16){
+        setError({ ...error, [`nameErr`]: `must be max ${16 - stateVal.length } chars`});
+        setValid({ ...valid, [`${stateVar}Valid`] : false})
       }else{
-        setError({ ...error, [`${stateVar}Err`]: `must be ${num} chars[${num - stateVal.length} chars]` })
+        setValid({ ...valid, [`${stateVar}Valid`] : true})
       }
     }else{
-      if(stateVar == "year"){
-        setError({ ...error, [`monthErr`]: ""});
+      if(stateVal.length !== num){
+        if(stateVar == "year"){
+          setError({ ...error, [`monthErr`]: `must be ${num} chars`});
+        }else{
+          setError({ ...error, [`${stateVar}Err`]: `must be ${num} chars[${num - stateVal.length} chars]` })
+        }
+        setValid({ ...valid, [`${stateVar}Valid`] : false})
       }else{
-        setError({ ...error, [`${stateVar}Err`]: ""})
+        if(stateVar == "year"){
+          setError({ ...error, [`monthErr`]: ""});
+        }else{
+          setError({ ...error, [`${stateVar}Err`]: ""})
+        }
+        setValid({ ...valid, [`${stateVar}Valid`] : true})
       }
     }
   }
+
+  // the function managing al onchange effects
   const handleChange = (event) => {
     let stateVar = event.target.name;
     let stateVal = event.target.value;
@@ -47,13 +74,8 @@ const Form = ({cardDetails, setCardDetails}) => {
     validateBlank(stateVar, stateVal);
     validateNum(stateVar, stateVal, len);
   };
-  const handleKeyUp = (event) =>{
-    let stateVar = event.target.name;
-    let stateVal = event.target.value;
-    let len = event.target.maxLength;
-    validateNum(stateVar, stateVal, len);
-  }
 
+  //  the function handling the on submit effects
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log(cardDetails);
@@ -75,7 +97,7 @@ const Form = ({cardDetails, setCardDetails}) => {
             name="name"
             id=""
             placeholder="e.g Jane Appleseed"
-            className="mt-min"
+            className="mt-min red"
             value={cardDetails.name}
             onChange={handleChange}
           />
