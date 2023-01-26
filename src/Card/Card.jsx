@@ -28,7 +28,7 @@ const Card = ({cardDetails}) => {
           <div className="bottom">
           
             <p>JANE APPLESEED</p>
-            <p>00/00</p>
+            <p>00/0000</p>
           </div>
         </div>
       </div>

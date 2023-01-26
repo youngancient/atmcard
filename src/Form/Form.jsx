@@ -1,94 +1,26 @@
 import "./style.css";
 import { useState } from "react";
+import { useForm, Controller } from "react-hook-form";
+import InputMask from "react-input-mask";
 
-const Form = ({cardDetails, setCardDetails}) => {
 
-  // state managing dynamically changing error messages
-  const [error, setError] = useState({
-    nameErr : '',
-    cardNumberErr : '',
-    monthErr : '',
-    cvcErr : ''
-  });
 
-  // state managing validity
-  const [valid, setValid ] = useState({
-    nameValid : null,
-    cardValid : null,
-    monthValid : null,
-    yearValid : null,
-    cvcValid : null
-  });
-
-  // function checking the input field is blank
-  const validateBlank = (stateVar, stateVal)=>{
-    if(stateVal.length === 0){      
-      if(stateVar == "year"){
-        setError({ ...error, [`monthErr`]: "Can't be blank"});
-      }else{
-        setError({ ...error, [`${stateVar}Err`]: "Can't be blank"})
-      }
-    }else{
-      if(stateVar == "year"){
-        setError({ ...error, [`monthErr`]: ""});
-      }else{
-        setError({ ...error, [`${stateVar}Err`]: ""})
-      }
-    }
-  }
-
-  // function checking the input field length is the same as what was required
-  const validateNum = (stateVar, stateVal, num)=>{
-    if(stateVar == "name"){
-      if(stateVal.length > 16){
-        setError({ ...error, [`nameErr`]: `must be max ${16 - stateVal.length } chars`});
-        setValid({ ...valid, [`${stateVar}Valid`] : false})
-      }else{
-        setValid({ ...valid, [`${stateVar}Valid`] : true})
-      }
-    }else{
-      if(stateVal.length !== num){
-        if(stateVar == "year"){
-          setError({ ...error, [`monthErr`]: `must be ${num} chars`});
-        }else{
-          setError({ ...error, [`${stateVar}Err`]: `must be ${num} chars[${num - stateVal.length} chars]` })
-        }
-        setValid({ ...valid, [`${stateVar}Valid`] : false})
-      }else{
-        if(stateVar == "year"){
-          setError({ ...error, [`monthErr`]: ""});
-        }else{
-          setError({ ...error, [`${stateVar}Err`]: ""})
-        }
-        setValid({ ...valid, [`${stateVar}Valid`] : true})
-      }
-    }
-  }
-
-  // the function managing al onchange effects
-  const handleChange = (event) => {
-    let stateVar = event.target.name;
-    let stateVal = event.target.value;
-    let len = event.target.maxLength;
-    setCardDetails({ ...cardDetails, [stateVar]: stateVal });
-    validateBlank(stateVar, stateVal);
-    validateNum(stateVar, stateVal, len);
-  };
+const Form = ({ cardDetails, setCardDetails }) => {
+  const {
+    register,
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({ mode: "onBlur" });
 
   //  the function handling the on submit effects
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    console.log(cardDetails);
-    setCardDetails({
-      name: "",
-      cardNumber: "",
-      month: "",
-      year: "",
-      cvc: "",
-    });
+  const onFormSubmit = (data) => {
+    console.log(data);
+    console.log(register);
   };
+  const handleError = (errors) => {};
   return (
-    <form className="" onSubmit={handleSubmit}>
+    <form className="" onSubmit={handleSubmit(onFormSubmit, handleError)}>
       <div className="form">
         <div className="element mt-1">
           <label htmlFor="name">CARDHOLDER NAME</label>
@@ -97,25 +29,41 @@ const Form = ({cardDetails, setCardDetails}) => {
             name="name"
             id=""
             placeholder="e.g Jane Appleseed"
-            className="mt-min red"
-            value={cardDetails.name}
-            onChange={handleChange}
+            className="mt-min"
+            {...register("name", { required: true, maxLength: 16 })}
           />
-          <p className="error"> {error.nameErr} </p>
+          {errors.name && errors.name.type === "required" && (
+            <p className="error">Name can't be blank</p>
+          )}
+          {errors.name && errors.name.type === "maxLength" && (
+            <p className="error">Max length should be 16chars</p>
+          )}
         </div>
         <div className="element mt-1">
           <label htmlFor="cardNumber">CARD NUMBER</label>
           <input
-            type= "number"
+            type="number"
             name="cardNumber"
             id=""
             placeholder="e.g 1234 5678 9123 0000"
+            inputMode="numeric"
             className="mt-min"
-            value={cardDetails.cardNumber}
-            onChange={handleChange}
-            maxLength = "16"
+            maxLength="16"
+            {...register("number", {
+              required: true,
+              minLength: 16,
+              maxLength: 16,
+            })}
           />
-          <p className="error">{ error.cardNumberErr }</p>
+          {errors.number && errors.number.type === "required" && (
+            <p className="error">Card number is required</p>
+          )}
+          {errors.number && errors.number.type === "maxLength" && (
+            <p className="error">Max length is 16 digits</p>
+          )}
+          {errors.number && errors.number.type === "minLength" && (
+            <p className="error">Card number should be 16 digits</p>
+          )}
         </div>
         <div className="element-2 mt-1">
           <div className="one">
@@ -126,23 +74,34 @@ const Form = ({cardDetails, setCardDetails}) => {
                 name="month"
                 id=""
                 placeholder="MM"
-                min={"01"}
-                max={"12"}
-                maxLength= "2"
-                value={cardDetails.month}
-                onChange={handleChange}
+                {...register("month", {
+                  required: true,
+                  maxLength: 2,
+                  min: 1,
+                  max: 12,
+                })}
               />
               <input
                 type="number"
                 name="year"
                 id=""
                 placeholder="YY"
-                maxLength= "4"
-                value={cardDetails.year}
-                onChange={handleChange}
+                maxLength="4"
+                {...register("year", { required: true, maxLength: 4 })}
               />
             </div>
-            <p className="error"> {error.monthErr} </p>
+            {errors.month && errors.month.type === "required" && (
+              <p className="error">Month can't be blank</p>
+            )}
+            {errors.month && errors.month.type === "maxLength" && (
+              <p className="error">Max length is 2</p>
+            )}
+            {errors.month && errors.month.type === "min" && (
+              <p className="error">least month is 01</p>
+            )}
+            {errors.month && errors.month.type === "max" && (
+              <p className="error">max month is 12</p>
+            )}
           </div>
           <div className="two">
             <label htmlFor="cvc">CVC</label>
@@ -152,12 +111,16 @@ const Form = ({cardDetails, setCardDetails}) => {
                 name="cvc"
                 id=""
                 placeholder="e.g 123"
-                value={cardDetails.cvc}
-                onChange={handleChange}
-                maxLength= "3"
+                maxLength="3"
+                {...register("cvc", { required: true, maxLength: 3 })}
               />
             </div>
-            <p className="error"> { error.cvcErr } </p>
+            {errors.cvc && errors.cvc.type === "required" && (
+              <p className="error">cvc can't be blank</p>
+            )}
+            {errors.cvc && errors.cvc.type === "maxLength" && (
+              <p className="error">Max length is 3</p>
+            )}
           </div>
         </div>
         <div className="btn">

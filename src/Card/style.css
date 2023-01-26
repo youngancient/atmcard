@@ -156,7 +156,7 @@
     .content{
         padding: 2.5rem;
         width: 100%;
-        left: auto;
+        left: 0;
         top: 0;
     }
     .number{
