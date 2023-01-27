@@ -58,6 +58,7 @@
     display: flex;
     justify-content: space-between;
     margin-top: 1.5rem;
+    padding-right: 1.2rem;
 }
 .content .bottom{
     margin-top: 1rem;
@@ -99,7 +100,7 @@
         justify-content: right;
     }
     .content{
-        padding: 1rem;
+        /* padding: 1rem; */
         width: 50%;
         left: 25%;
         top: 1rem;
@@ -154,13 +155,16 @@
         margin-bottom: 1rem;
     }
     .content{
-        padding: 2.5rem;
+        padding: 2rem;
+        padding-left: 3rem;
+        padding-right: 3rem;
         width: 100%;
         left: 0;
         top: 0;
     }
     .number{
         margin-top: 3rem;
+        padding-right: 2rem;
     }
     .number h2{
         letter-spacing: 2px;
