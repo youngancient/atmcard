@@ -13,14 +13,13 @@ const formVariants = {
     transition: {
       delay: 1,
       duration: 2,
-      staggerChildren: 1,
     },
   },
   exit: {
     opacity : 0,
+    x: '-100',
     transition: {
-      duration: 1.5,
-      staggerChildren: 1,
+      duration: 1,
     },
   },
 };
@@ -72,7 +71,6 @@ const Form = ({ cardDetails, setCardDetails, setSubmitted }) => {
       variants={formVariants}
       initial="initial"
       animate="final"
-      exit="exit"
       noValidate
     >
       <div className="form">
