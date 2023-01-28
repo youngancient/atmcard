@@ -39,7 +39,7 @@ function App() {
       animate = "final"
       >
         <Card cardDetails={cardDetails} />
-        <div className="cont bdr">
+        <div className="cont">
           <AnimatePresence>
             {
               submitted ?
