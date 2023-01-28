@@ -17,7 +17,6 @@ const formVariants = {
   },
   exit: {
     opacity : 0,
-    x: '-100',
     transition: {
       duration: 1,
     },
@@ -71,6 +70,7 @@ const Form = ({ cardDetails, setCardDetails, setSubmitted }) => {
       variants={formVariants}
       initial="initial"
       animate="final"
+      // exit = "exit"  --> i dont know but when i use this, it pushes the form to the left before fadng out
       noValidate
     >
       <div className="form">
