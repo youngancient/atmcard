@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Interactive Atm CARD
 
 ## Welcome! 👋
